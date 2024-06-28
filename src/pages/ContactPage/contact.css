@@ -1,6 +1,7 @@
-
+/* Base Styles */
 * {
-    font-family: calibri 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: Calibri, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .contact-us {
@@ -8,6 +9,7 @@
     font-size: 4rem;
     margin-bottom: 4%;
     color: #1b1b1b;
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
 }
 
 form {
@@ -16,29 +18,13 @@ form {
     width: 50%;
     margin-left: 7%;
     margin-top: 8%;
-
 }
 
 .name-group {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
 }
-
-@media only screen and (max-width: 600px) {
-    .name-group{
-      display: flex;
-      flex-direction: column;
-    }
-
-    form {
-      width: 100%;
-      margin-left: 0%;
-    }
-
-    .name-input{
-      width: 100%;
-    }
-  }
 
 .name-text {
     display: flex;
@@ -50,12 +36,10 @@ form {
 .name-input {
     height: 40px;
     width: 19rem;
-
-    
+    flex: 1 1 auto; /* Allow flexibility */
 }
 
 input {
-    border-color: none;
     border: none;
     outline: none;
     border-radius: 5px;
@@ -66,7 +50,8 @@ input {
 
 .email-input {
     height: 40px;
-    width: 40rem;
+    width: 100%; /* Make full width */
+    max-width: 40rem; /* Max width to keep large screens consistent */
 }
 
 label {
@@ -74,10 +59,10 @@ label {
 }
 
 textarea {
-    width: 40rem;
+    width: 100%; /* Make full width */
+    max-width: 40rem; /* Max width to keep large screens consistent */
     height: 100px;
     margin-bottom: 1%;
-    border-color: none;
     border: none;
     outline: none;
     border-radius: 5px;
@@ -89,7 +74,8 @@ button {
     background-color: black;
     color: white;
     height: 50px;
-    width: 40rem;
+    width: 100%; /* Make full width */
+    max-width: 40rem; /* Max width to keep large screens consistent */
     border: none;
     outline: none;
     border-radius: 5px;
@@ -98,3 +84,46 @@ button {
     margin-bottom: 5%;
 }
 
+/* Small Devices (max-width: 600px) */
+@media only screen and (max-width: 600px) {
+    .name-group {
+        flex-direction: column;
+        margin-bottom: 2%;
+    }
+
+    form {
+        width: 100%;
+        margin-left: 0%;
+        margin-top: 5%;
+    }
+
+    .name-input, .email-input, textarea, button {
+        width: 100%;
+    }
+}
+
+/* Medium Devices (max-width: 900px) */
+@media only screen and (max-width: 900px) {
+    form {
+        width: 80%;
+        margin-left: 2%;
+        margin-top: 5%;
+    }
+
+    .name-group {
+        margin-bottom: 3%;
+    }
+}
+
+/* Large Devices (max-width: 1200px) */
+@media only screen and (max-width: 1200px) {
+    form {
+        width: 60%;
+        margin-left: 5%;
+        margin-top: 6%;
+    }
+
+    .name-group {
+        margin-bottom: 4%;
+    }
+}
