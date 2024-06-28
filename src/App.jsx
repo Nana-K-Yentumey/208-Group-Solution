@@ -4,7 +4,7 @@ import "./App.css";
 import LandingPage from "./pages/LandingPage/LandingPage";
 import LandingPage2 from "./pages/LandingPage2/LandingPage2";
 import Dashboard from "./pages/DashboardPage/Dashboard";
-import LoginPage from "././pages/LoginPage";
+import LoginPage from "./pages/LandingPage/LoginPage";
 import ContactUs from "././pages/ContactPage/ContactUs";
 
 function App() {
