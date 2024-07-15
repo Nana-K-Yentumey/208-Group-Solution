@@ -1,13 +1,16 @@
+"use strict";
+
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-require('dotenv').config(); // To Load environment variables from .env file
+const cors = require('cors');
+require('dotenv').config(); // To load environment variables from .env file
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 // Middleware
-app.use(bodyParser.json());
+app.use(express.json()); // I replaced bodyParser.json() with express.json()
+app.use(cors()); 
 
 // MongoDB connection
 const mongoDBUri = process.env.MONGODB_URI;
@@ -22,15 +25,18 @@ db.once('open', () => {
     console.log('Connected to MongoDB');
 });
 
-// Routes
-const studentRoutes = require('./routes/students');
+// Import routes
+const loginRoutes = require('./routes/login'); // Import login routes
+const studentRoutes = require('./routes/students'); // Import student routes
 const instructorRoutes = require('./routes/instructors');
 const attendanceRoutes = require('./routes/attendance');
 const sessionLogRoutes = require('./routes/sessionLogs');
 const announcementRoutes = require('./routes/announcements');
 const resourceRoutes = require('./routes/resources');
 
-app.use('/students', studentRoutes);
+// Use routes
+app.use('/login', loginRoutes); // Use login routes
+app.use('/students', studentRoutes); // Use student routes
 app.use('/instructors', instructorRoutes);
 app.use('/attendance', attendanceRoutes);
 app.use('/sessionLogs', sessionLogRoutes);
@@ -40,3 +46,5 @@ app.use('/resources', resourceRoutes);
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
+
+//Please drawer my attention for any errors.
