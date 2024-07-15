@@ -1,4 +1,4 @@
-"use strict"; // Enable strict mode
+"use strict"; 
 
 const express = require('express');
 const { Schema, model } = require('mongoose');
