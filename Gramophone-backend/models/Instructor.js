@@ -4,7 +4,7 @@ const instructorSchema = new mongoose.Schema({
     name: String,
     contact: String,
     email: String,
-    instrument: String,
+    instrument: [String],
     bio: String,
 });
 

@@ -10,8 +10,7 @@ const studentSchema = new mongoose.Schema({
     location: String,
     tutor_assigned: String,
     schedule: String,
-    consent_form: String,
-    date_started: Date
+
 });
 
 module.exports = mongoose.model('Student', studentSchema);
