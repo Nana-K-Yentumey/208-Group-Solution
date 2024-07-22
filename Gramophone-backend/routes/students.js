@@ -2,8 +2,22 @@
 
 const express = require('express');
 const router = express.Router();
-const Student = require('../models/student');
+const Student = require('../models/Student');
 
+// Middleware to get a student by ID
+async function getStudent(req, res, next) {
+    let student;
+    try {
+        student = await Student.findOne({studentID: req.params.studentID});
+        if (!student) {
+            return res.status(404).json({ message: 'Student not found' });
+        }
+    } catch (err) {
+        return res.status(500).json({ message: err.message });
+    }
+    res.student = student;
+    next();
+}
 // Get all students
 router.get('/', async (req, res) => {
     try {
@@ -15,7 +29,7 @@ router.get('/', async (req, res) => {
 });
 
 // Get a specific student
-router.get('/:id', getStudent, (req, res) => {
+router.get('/:studentID', getStudent, (req, res) => {
     res.json(res.student);
 });
 
@@ -31,8 +45,17 @@ router.post('/', async (req, res) => {
 });
 
 // Update a student
-router.put('/:id', getStudent, async (req, res) => {
-    Object.assign(res.student, req.body);
+router.patch('/:studentID', getStudent, async (req, res) => {
+    // Update only the fields that are provided in the request body
+    Object.keys(req.body).forEach((key) => {
+        // Special handling for contact field to ensure it's an array
+        if (key === 'contact') {
+            res.student[key] = Array.isArray(req.body[key]) ? req.body[key] : [req.body[key]];
+        } else {
+            res.student[key] = req.body[key];
+        }
+    });
+
     try {
         const updatedStudent = await res.student.save();
         res.json(updatedStudent);
@@ -42,7 +65,7 @@ router.put('/:id', getStudent, async (req, res) => {
 });
 
 // Delete a student
-router.delete('/:id', getStudent, async (req, res) => {
+router.delete('/:studentID', getStudent, async (req, res) => {
     try {
         await res.student.remove();
         res.json({ message: 'Student deleted' });
@@ -51,19 +74,6 @@ router.delete('/:id', getStudent, async (req, res) => {
     }
 });
 
-// Middleware to get a student by ID
-async function getStudent(req, res, next) {
-    let student;
-    try {
-        student = await Student.findById(req.params.id);
-        if (!student) {
-            return res.status(404).json({ message: 'Student not found' });
-        }
-    } catch (err) {
-        return res.status(500).json({ message: err.message });
-    }
-    res.student = student;
-    next();
-}
+
 
 module.exports = router;

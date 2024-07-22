@@ -21,10 +21,7 @@ app.use(session({
 
 // MongoDB connection
 const mongoDBUri = process.env.MONGODB_URI;
-mongoose.connect(mongoDBUri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+mongoose.connect(mongoDBUri);
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -42,6 +39,7 @@ const sessionLogRoutes = require('./routes/sessionLogs');
 const announcementRoutes = require('./routes/announcements');
 const resourceRoutes = require('./routes/resources');
 
+mongoose.set("strictQuery", false)
 // Use routes
 app.use('/login', loginRoutes); 
 app.use('/admin', adminRoutes);
