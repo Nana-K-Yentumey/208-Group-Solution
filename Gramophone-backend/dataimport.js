@@ -24,7 +24,7 @@ const studentSchema = new mongoose.Schema({
     schedule: [{
         day: String,
         time: String,
-    }]
+    }]     
 });
 
 const Student = mongoose.model('Student', studentSchema);
