@@ -86,7 +86,7 @@ function LandingPage2() {
           <h2>Class Appointments</h2>
           <div className="appointments">
             {appointments.map((item) => (
-              <AppointementCard appointment={item} key={item.key} />
+              <AppointementCard appointment={item} key={item.id} />
             ))}
           </div>
         </div>
@@ -94,7 +94,8 @@ function LandingPage2() {
 
       <div className="register-info">
         <p style={{ color: "#c3a71d", textWrap: "wrap" }}>
-          Want to register a new course?  <span>Click the button below to register.</span>
+          Want to register a new course?{" "}
+          <span>Click the button below to register.</span>
         </p>
         <button className="contact-btn">REGISTER</button>
       </div>

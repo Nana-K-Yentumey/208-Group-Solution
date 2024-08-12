@@ -23,11 +23,13 @@ const Navbar2 = () => {
         <Link className="links" to="/contactUs">
           CONTACT US
         </Link>
-        <button className="log-out">
-          <Link style={{ textDecoration: "none", color: "#121212" }} to="/">
-            LOG OUT
-          </Link>
-        </button>
+        <div>
+          <button className="log-out">
+            <Link style={{ textDecoration: "none", color: "#121212" }} to="/">
+              LOG OUT
+            </Link>
+          </button>
+        </div>
       </ul>
     </nav>
   );
