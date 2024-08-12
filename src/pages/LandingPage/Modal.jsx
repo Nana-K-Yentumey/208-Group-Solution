@@ -25,12 +25,14 @@ const Modal = ({ show, handleClose }) => {
     // Example: authenticate the user using an API call
 
     if (username === "admin" && password === "password") {
-      // Successful login
       setError("");
       console.log("Login successful");
       navigate("/dashboard");
+    } else if (username === "student" && password === "student123") {
+      setError("");
+      console.log("Login successful");
+      navigate("/studentDashboard");
     } else {
-      // Unsuccessful login
       setError("Invalid username or password");
     }
   };

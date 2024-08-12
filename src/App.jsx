@@ -7,6 +7,7 @@ import LandingPage2 from "././pages/LandingPage2/LandingPage2";
 import Dashboard from "././pages/DashboardPage/Dashboard";
 import LoginPage from "./pages/LandingPage/Modal";
 import ContactUs from "././pages/ContactPage/ContactUs";
+import StudentDashboard from "./pages/StudentDashboard/StudentDashboard";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/dashboard" Component={Dashboard} />
           <Route path="/login" Component={LoginPage} />
           <Route path="/contactUs" Component={ContactUs} />
+          <Route path="/studentDashboard" Component={StudentDashboard} />
         </Routes>
       </Router>
     </div>
