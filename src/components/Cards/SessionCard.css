@@ -1,0 +1,18 @@
+.card {
+  min-width: 100%;
+  width: 300px;
+  height: auto;
+  /* background-color: pink; */
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 5px 0;
+}
+.card h4 {
+  font-weight: 500;
+}
+
+.profile-img {
+  width: 10%;
+  border-radius: 50%;
+}

@@ -1,0 +1,48 @@
+.main-content {
+  width: 100%;
+  height: auto;
+  padding-bottom: 2.5rem;
+}
+.welcome-msg {
+  font-size: 2.5rem;
+  font-weight: 500;
+  text-align: center;
+  color: #000;
+}
+.container-1 {
+  width: 100%;
+  height: auto;
+  padding: 2.5rem;
+}
+.wrapper-1 {
+  width: 100%;
+  height: inherit;
+  display: flex;
+  flex-direction: row;
+  gap: 35px;
+  margin-bottom: 30px;
+}
+.sessions {
+  flex: 1;
+  height: fit-content;
+  /* background-color: aqua; */
+  padding: 20px;
+  gap: 10px;
+}
+.sessions.border-line {
+  border: 1px solid rgb(216, 216, 216);
+  border-radius: 20px;
+}
+.email {
+  color: gray;
+}
+.heading {
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+
+@media (max-width: 790px) {
+  .wrapper-1 {
+    flex-wrap: wrap;
+  }
+}
