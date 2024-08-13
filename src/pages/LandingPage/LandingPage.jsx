@@ -1,14 +1,12 @@
-import { useState } from 'react'
-import { Link } from "react-router-dom";
+import { useState } from "react";
+// import { Link } from "react-router-dom";
 import "./LandingPage.css";
 import Navbar from "../../components/Navbar/Navbar";
 import ReviewCard from "../../components/ReviewCard/ReviewCard";
 import Footer from "../../components/Footer/Footer";
-import Modal from './Modal';
-
+import Modal from "./Modal";
 
 function LandingPage() {
-
   const [showModal, setShowModal] = useState(false);
 
   const handleOpenModal = () => {
@@ -28,35 +26,35 @@ function LandingPage() {
       key: 1,
     },
     {
-      name: "Phandoh",
+      name: "Yentumey",
       profilePic: "src/assets/Images/boy.png",
       review: "Nice website",
       description: "Description",
       key: 2,
     },
     {
-      name: "Phandoh",
+      name: "Nana Kwame",
       profilePic: "src/assets/Images/boy.png",
       review: "Nice website",
       description: "Description",
       key: 3,
     },
     {
-      name: "Phandoh",
+      name: "Kwabena",
       profilePic: "src/assets/Images/boy.png",
       review: "Nice website",
       description: "Description",
       key: 4,
     },
     {
-      name: "Phandoh",
+      name: "Jan",
       profilePic: "src/assets/Images/boy.png",
       review: "Nice website",
       description: "Description",
       key: 5,
     },
     {
-      name: "Phandoh",
+      name: "Jonathan",
       profilePic: "src/assets/Images/boy.png",
       review: "Nice website",
       description: "Description",
@@ -75,7 +73,7 @@ function LandingPage() {
         </h1>
         <p style={{ color: "#fff" }}>WE ARE GLAD TO HAVE YOU HERE WITH US.</p>
         <button className="login-btn" onClick={handleOpenModal}>
-            LOGIN
+          LOGIN
         </button>
         <Modal show={showModal} handleClose={handleCloseModal} />
       </div>

@@ -1,0 +1,85 @@
+.main-content {
+  width: 100%;
+  height: auto;
+}
+.welcome-msg {
+  font-size: 2.5rem;
+  font-weight: 500;
+  text-align: center;
+  color: #000;
+  margin-bottom: 50px;
+}
+.container-1 {
+  width: 100%;
+  height: auto;
+  padding: 2.5rem;
+  margin-bottom: 50px;
+}
+.wrapper-1 {
+  width: 100%;
+  height: inherit;
+  display: flex;
+  flex-direction: row;
+  gap: 35px;
+  margin-bottom: 40px;
+}
+.sessions {
+  flex: 1;
+  height: fit-content;
+  /* background-color: aqua; */
+  padding: 20px;
+  padding-right: 0;
+  gap: 10px;
+}
+.sessions.border-line {
+  border: 1.5px solid rgb(216, 216, 216);
+  border-radius: 7px;
+}
+.email {
+  color: gray;
+}
+.heading {
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+.wrapper-2 {
+  padding: 30px;
+  padding-bottom: 5px;
+  border: 1.5px solid rgb(216, 216, 216);
+  border-radius: 7px;
+}
+.timetable {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  width: 100%;
+  table-layout: auto;
+  /* border: 1px solid black; */
+}
+.main-column {
+  width: 80%;
+}
+.middle-column {
+  text-align: center;
+}
+.last-column {
+  color: goldenrod;
+}
+.timetable tr {
+  border-bottom: 1.5px solid rgb(216, 216, 216);
+}
+.timetable .trombone {
+  border: none;
+}
+.timetable td {
+  height: 40px;
+}
+.table-heading {
+  color: rgb(113, 113, 113);
+  font-weight: bold;
+}
+
+@media (max-width: 790px) {
+  .wrapper-1 {
+    flex-wrap: wrap;
+  }
+}

@@ -5,7 +5,13 @@ const Navbar = () => {
   return (
     <nav className="nav-bar">
       <h3 className="logo-name">GRAMOPHONE GHANA</h3>
-      <button className="sign-up"><Link to="/contactUs">SIGN UP</Link></button>
+      <div>
+        <button className="sign-up">
+          <Link className="btn-link" to="/contactUs">
+            SIGN UP
+          </Link>
+        </button>
+      </div>
     </nav>
   );
 };

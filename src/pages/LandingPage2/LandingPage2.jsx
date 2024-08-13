@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import AppointementCard from "../../components/AppointmentCard/AppointementCard";
 import Footer from "../../components/Footer/Footer";
-import Navbar2 from "../../components/Navbar2/Navbar2";
+import NavbarStudent from "../../components/Navbar2/NavbarStudent";
 import "../LandingPage2/LandingPage2.css";
 
 function LandingPage2() {
@@ -37,7 +37,7 @@ function LandingPage2() {
   ];
   return (
     <div>
-      <Navbar2 />
+      <NavbarStudent />
 
       <div className="main-section">
         <h1
@@ -53,7 +53,7 @@ function LandingPage2() {
           The courses you have signed up for so far!
         </p>
 
-        <div className="wrapper-1">
+        <div className="wrapper-one">
           <div className="contact-tutor">
             <h1>CONTACT YOUR TUTOR</h1>
             <p style={{ color: "gray" }}>
@@ -62,19 +62,23 @@ function LandingPage2() {
             <button className="contact-btn">CONTACT US</button>
           </div>
 
-          <img
-            className="image"
-            src="src\assets\Images\ContactTutor.png"
-            alt=""
-          />
+          <div className="image-container">
+            <img
+              className="image"
+              src="src\assets\Images\ContactTutor.png"
+              alt=""
+            />
+          </div>
         </div>
 
-        <div className="wrapper-1">
-          <img
-            className="image"
-            src="src\assets\Images\announcements.png"
-            alt=""
-          />
+        <div className="wrapper-one">
+          <div className="image-container">
+            <img
+              className="image"
+              src="src\assets\Images\announcements.png"
+              alt=""
+            />
+          </div>
 
           <div className="contact-tutor spacing">
             <h1>ANNOUNCEMENTS</h1>
@@ -86,7 +90,7 @@ function LandingPage2() {
           <h2>Class Appointments</h2>
           <div className="appointments">
             {appointments.map((item) => (
-              <AppointementCard appointment={item} key={item.key} />
+              <AppointementCard appointment={item} key={item.id} />
             ))}
           </div>
         </div>
@@ -94,7 +98,8 @@ function LandingPage2() {
 
       <div className="register-info">
         <p style={{ color: "#c3a71d", textWrap: "wrap" }}>
-          Want to register a new course?  <span>Click the button below to register.</span>
+          Want to register a new course?{" "}
+          <span>Click the button below to register.</span>
         </p>
         <button className="contact-btn">REGISTER</button>
       </div>
