@@ -1,4 +1,5 @@
-body {
+body,
+.landing_page_container {
   overflow-x: hidden;
 }
 

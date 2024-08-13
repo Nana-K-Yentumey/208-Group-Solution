@@ -36,7 +36,7 @@ function LandingPage2() {
     },
   ];
   return (
-    <div>
+    <div className="landing_page_container">
       <NavbarStudent />
 
       <div className="main-section">

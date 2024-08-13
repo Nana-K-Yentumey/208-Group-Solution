@@ -46,6 +46,9 @@ nav .menu span {
   color: #c3a71d;
   text-decoration: none;
 }
+.links:active {
+  opacity: 0.6;
+}
 
 .nav-ul {
   width: 400px;
