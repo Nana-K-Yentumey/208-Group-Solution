@@ -3,10 +3,16 @@
   font-family: Calibri, "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
+.contact-container {
+  width: 100%;
+  height: auto;
+}
 
 .contact-us {
   display: flex;
   font-size: 4rem;
+  font-weight: bolder;
+  text-shadow: 2px 5px 8px gray;
   margin-bottom: 4%;
   color: #1b1b1b;
   flex-wrap: wrap; /* Allow wrapping for smaller screens */
@@ -31,7 +37,6 @@
   grid-template-columns: repeat(2, 1fr);
   column-gap: 30px;
 }
-
 
 .email-text,
 .message-text {
@@ -81,7 +86,7 @@ label {
   padding: 1%;
 }
 
-button {
+.contact-form button {
   background-color: black;
   color: white;
   height: 50px;
@@ -93,6 +98,7 @@ button {
   font-weight: 700;
   cursor: pointer;
   margin-bottom: 5%;
+  font-size: 1rem;
 }
 
 /* Small Devices (max-width: 600px) */

@@ -35,7 +35,7 @@ const Footer = () => {
           </a>
         </div>
         <p className="footer-text">
-          &copy; 2024 Your Company. All rights reserved.
+          &copy; 2024 Gramophone Ghana. All rights reserved.
         </p>
         <p className="footer-text">Designed by Quetzal Tech</p>
       </div>

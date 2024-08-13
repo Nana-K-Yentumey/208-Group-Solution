@@ -1,8 +1,9 @@
 // import { useState } from "react";
 import "./contact.css";
-import Navbar2 from "../../components/Navbar2/Navbar2";
+// import Navbar2 from "../../components/Navbar2/Navbar2";
 import Footer from "../../components/Footer/Footer";
 import { useForm } from "react-hook-form";
+import NavbarStudent from "../../components/Navbar2/NavbarStudent";
 
 const ContactUs = () => {
   const {
@@ -13,8 +14,8 @@ const ContactUs = () => {
   } = useForm();
 
   return (
-    <>
-      <Navbar2 />
+    <div className="contact-container">
+      <NavbarStudent />
       <div className="form-container">
         <form
           onSubmit={handleSubmit((data) => {
@@ -103,7 +104,7 @@ const ContactUs = () => {
       </div>
 
       <Footer />
-    </>
+    </div>
   );
 };
 

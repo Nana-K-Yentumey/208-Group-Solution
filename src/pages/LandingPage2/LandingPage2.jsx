@@ -1,8 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Link } from "react-router-dom";
 import AppointementCard from "../../components/AppointmentCard/AppointementCard";
 import Footer from "../../components/Footer/Footer";
-// import Navbar2 from "../../components/Navbar2/Navbar2";
 import NavbarStudent from "../../components/Navbar2/NavbarStudent";
 import "../LandingPage2/LandingPage2.css";
 
@@ -55,32 +53,32 @@ function LandingPage2() {
           The courses you have signed up for so far!
         </p>
 
-        <div className="wrapper-1">
+        <div className="wrapper-one">
           <div className="contact-tutor">
             <h1>CONTACT YOUR TUTOR</h1>
             <p style={{ color: "gray" }}>
               Get in touch with your tutor for this course.
             </p>
-            <button className="contact-btn">
-              <Link className="link" to="/contactUs">
-                CONTACT US
-              </Link>
-            </button>
+            <button className="contact-btn">CONTACT US</button>
           </div>
 
-          <img
-            className="image"
-            src="src\assets\Images\ContactTutor.png"
-            alt=""
-          />
+          <div className="image-container">
+            <img
+              className="image"
+              src="src\assets\Images\ContactTutor.png"
+              alt=""
+            />
+          </div>
         </div>
 
-        <div className="wrapper-1">
-          <img
-            className="image"
-            src="src\assets\Images\announcements.png"
-            alt=""
-          />
+        <div className="wrapper-one">
+          <div className="image-container">
+            <img
+              className="image"
+              src="src\assets\Images\announcements.png"
+              alt=""
+            />
+          </div>
 
           <div className="contact-tutor spacing">
             <h1>ANNOUNCEMENTS</h1>

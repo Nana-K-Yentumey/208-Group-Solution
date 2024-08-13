@@ -1,14 +1,11 @@
+body {
+  overflow-x: hidden;
+}
+
 .main-section {
   width: 100%;
-  padding: 80px 5%;
+  padding: 80px 50px;
   background-color: #fff;
-}
-.contact-tutor {
-  width: 500px;
-  height: 320px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
 }
 .contact-btn {
   background-color: #242323;
@@ -20,22 +17,25 @@
   border-radius: 7px;
   cursor: pointer;
 }
-.contact-btn .link {
-  color: #fff;
-  text-decoration: none;
-}
 .contact-btn:active {
   opacity: 0.6;
 }
-.wrapper-1 {
+.wrapper-one {
+  width: 100%;
   margin-top: 100px;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  column-gap: 30px;
 }
-.contact-tutor.spacing {
-  padding-top: 20px;
-  padding-left: 50px;
-  background-color: rgb(250, 250, 250);
+.wrapper-one .contact-tutor {
+  max-width: 500px;
+  height: 320px;
+  padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 10px;
+  background-color: rgb(246, 246, 246);
 }
 .class-appointments {
   margin-top: 50px;
@@ -57,8 +57,16 @@
   align-items: center;
   gap: 20px;
 }
+
+.image-container {
+  display: flex;
+  max-width: 100%;
+  min-width: 90%;
+  height: 320px;
+}
 .image {
-  width: 500px;
+  max-width: 100%;
+  height: auto;
 }
 
 @media (max-width: 600px) {
@@ -66,16 +74,17 @@
     padding: 50px;
     width: 100%;
   }
-  .wrapper-1 {
+  .wrapper-one {
     grid-template-columns: 1fr;
     margin: 50px 0;
   }
-  .wrapper-1 .image {
+  .wrapper-one .image {
     width: 100%;
   }
   .contact-tutor {
     width: 100%;
     font-size: 15px;
+    margin-bottom: 20px;
   }
   .spacing {
     text-align: left;
