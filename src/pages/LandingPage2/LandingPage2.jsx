@@ -1,7 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
+import { Link } from "react-router-dom";
 import AppointementCard from "../../components/AppointmentCard/AppointementCard";
 import Footer from "../../components/Footer/Footer";
-import Navbar2 from "../../components/Navbar2/Navbar2";
+// import Navbar2 from "../../components/Navbar2/Navbar2";
+import NavbarStudent from "../../components/Navbar2/NavbarStudent";
 import "../LandingPage2/LandingPage2.css";
 
 function LandingPage2() {
@@ -37,7 +39,7 @@ function LandingPage2() {
   ];
   return (
     <div>
-      <Navbar2 />
+      <NavbarStudent />
 
       <div className="main-section">
         <h1
@@ -59,7 +61,11 @@ function LandingPage2() {
             <p style={{ color: "gray" }}>
               Get in touch with your tutor for this course.
             </p>
-            <button className="contact-btn">CONTACT US</button>
+            <button className="contact-btn">
+              <Link className="link" to="/contactUs">
+                CONTACT US
+              </Link>
+            </button>
           </div>
 
           <img
