@@ -32,6 +32,7 @@ const ContactUs = () => {
                 className="name-input"
                 type="text"
                 id="firstName"
+                placeholder="Jane"
                 {...register("firstName", {
                   required: "Firstname is required",
                   minLength: {
@@ -50,6 +51,7 @@ const ContactUs = () => {
                 className="name-input"
                 type="text"
                 id="lastName"
+                placeholder="Doe"
                 {...register("lastName", {
                   required: "Lastname is required",
                   minLength: {
@@ -69,6 +71,7 @@ const ContactUs = () => {
               className="email-input"
               type="email"
               id="email"
+              placeholder="JaneDoe@gmail.com"
               {...register("email", {
                 required: "Email is required.",
                 pattern: {
@@ -87,6 +90,7 @@ const ContactUs = () => {
               className="message-input"
               id="message"
               type="text"
+              placeholder="Youre message here!"
               {...register("message", {
                 required: "This field is required",
                 minLength: {
