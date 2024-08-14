@@ -7,6 +7,7 @@ const studentSchema = new mongoose.Schema({
     contact: [String], // Updated to an array of strings
     instrument: { type: String },
     schedule: [{
+        instructorId: { type: mongoose.Schema.Types.ObjectId, ref: 'Instructor' },
         day: String,
         time: String
     }]

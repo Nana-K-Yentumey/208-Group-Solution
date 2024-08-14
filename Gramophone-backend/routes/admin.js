@@ -1,103 +1,40 @@
-"use strict";
-
 const express = require('express');
-const bcrypt = require('bcrypt');
-const Admin = require('../models/Admin');
-const Announcement = require('../models/Announcement');
-const authenticateAdmin = require('../middleware/auth');
+const { authenticateToken, authenticateAdmin } = require('../middleware/auth');
+const AdminController = require('../controllers/adminController');
 const router = express.Router();
 
-// Admin login route
-router.post('/login', async (req, res) => {
-    const { username, password } = req.body;
+// Middleware for admin routes
+router.use(authenticateAdmin);
 
-    try {
-        const admin = await Admin.findOne({ username });
-        if (!admin) {
-            return res.status(401).json({ message: 'Invalid credentials' });
-        }
 
-        const isMatch = await bcrypt.compare(password, admin.password);
-        if (!isMatch) {
-            return res.status(401).json({ message: 'Invalid credentials' });
-        }
+router.get('/test-admin', (req, res) => {
+    res.json({ message: 'You have admin access!' });
+  });
+  
+// Student routes
+router.post('/students', AdminController.addStudent);
+router.put('/students/:studentID', AdminController.updateStudent);
+router.get('/students', AdminController.viewStudents);
+router.get('/students/:studentID', AdminController.viewStudent);
+router.delete('/students/:studentID', AdminController.deleteStudent);
+// router.post('/assignInstructor', AdminController.assignInstructor);
 
-        req.session.adminId = admin._id;
-        res.status(200).json({ message: 'Login successful' });
-    } catch (err) {
-        console.error('Login error:', err);
-        res.status(500).json({ message: 'Server error' });
-    }
-});
 
-// Admin logout route
-router.post('/logout', (req, res) => {
-    req.session.destroy(err => {
-        if (err) {
-            return res.status(500).json({ message: 'Logout failed.' });
-        }
-        res.status(200).json({ message: 'Logout successful.' });
-    });
-});
+// Instructor routes
+router.post('/instructors', AdminController.addInstructor);
+router.put('/instructors/:instructorID', AdminController.updateInstructor);
+router.get('/instructors', AdminController.viewInstructors);
+router.get('/instructors/:instructorID', AdminController.viewInstructor);
+router.delete('/instructors/:instructorID', AdminController.deleteInstructor);
 
-// Add an announcement
-router.post('/announcements', authenticateAdmin, async (req, res) => {
-    const announcement = new Announcement(req.body);
-    try {
-        const newAnnouncement = await announcement.save();
-        res.status(201).json(newAnnouncement);
-    } catch (err) {
-        res.status(400).json({ message: err.message });
-    }
-});
+// Announcement routes
+router.post('/announcements', AdminController.addAnnouncement);
+router.get('/announcements', AdminController.viewAnnouncements);
 
-// Get all announcements
-router.get('/announcements', async (req, res) => {
-    try {
-        const announcements = await Announcement.find();
-        res.json(announcements);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
-
-// Get a specific announcement
-router.get('/announcements/:id', async (req, res) => {
-    try {
-        const announcement = await Announcement.findById(req.params.id);
-        if (!announcement) {
-            return res.status(404).json({ message: 'Announcement not found' });
-        }
-        res.json(announcement);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
-
-// Update an announcement
-router.put('/announcements/:id', authenticateAdmin, async (req, res) => {
-    try {
-        const announcement = await Announcement.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
-        if (!announcement) {
-            return res.status(404).json({ message: 'Announcement not found' });
-        }
-        res.json(announcement);
-    } catch (err) {
-        res.status(400).json({ message: err.message });
-    }
-});
-
-// Delete an announcement
-router.delete('/announcements/:id', authenticateAdmin, async (req, res) => {
-    try {
-        const announcement = await Announcement.findByIdAndDelete(req.params.id);
-        if (!announcement) {
-            return res.status(404).json({ message: 'Announcement not found' });
-        }
-        res.json({ message: 'Announcement deleted' });
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
+// Course Routes
+router.post('/courses', AdminController.createCourse);
+router.put('/courses/:courseID', AdminController.updateCourse);
+router.delete('/courses/:courseID', AdminController.deleteCourse);
 
 module.exports = router;
+

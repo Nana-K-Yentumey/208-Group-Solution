@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
 
 const announcementSchema = new mongoose.Schema({
-    title: String,
-    content: String,
-    date: Date,
-});
+  title: { type: String, required: true },
+  content: { type: String, required: true },
+}, { timestamps: true });
 
 module.exports = mongoose.model('Announcement', announcementSchema);

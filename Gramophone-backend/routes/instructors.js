@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
 });
 
 // Get a specific instructor
-router.get('/:id', getInstructor, (req, res) => {
+router.get('/:instructorID', getInstructor, (req, res) => {
     res.json(res.instructor);
 });
 

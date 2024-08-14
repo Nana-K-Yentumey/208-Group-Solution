@@ -1,32 +1,66 @@
-"use strict"; 
+
 
 const express = require('express');
-const { Schema, model } = require('mongoose');
-const { compare } = require('bcrypt');
 const router = express.Router();
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const Admin = require('../models/Admin');
+const Student = require('../models/Student');
+const Instructor = require('../models/Instructor');
 
-const userSchema = new Schema({
-    username: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-});
-
-const User = model('User', userSchema);
-
-router.post('/', async (req, res) => { //I used the base route because the /login is already defined in the server.js
-    const { username, password } = req.body;
+router.post('/', async (req, res) => {
+    const { username, password, role } = req.body; // Role should be specified to differentiate user types
 
     try {
-        const user = await User.findOne({ username });
-        if (!user) {
-            return res.status(401).json({ message: 'Invalid credentials' });
+        console.log('Login attempt:', { username, role });
+
+        let user;
+
+        // Query based on role
+        switch (role) {
+            case 'admin':
+                user = await Admin.findOne({ username });
+                if (!user) {
+                    console.log('Admin not found');
+                    return res.status(401).json({ message: 'Invalid credentials' });
+                }
+                break;
+
+            case 'student':
+                user = await Student.findOne({ studentID: username });
+                if (!user) {
+                    console.log('Student not found');
+                    return res.status(401).json({ message: 'Invalid student ID' });
+                }
+                break;
+
+            case 'instructor':
+                user = await Instructor.findOne({ instructorID: username });
+                if (!user) {
+                    console.log('Instructor not found');
+                    return res.status(401).json({ message: 'Invalid credentials' });
+                }
+                break;
+
+            default:
+                console.log('Invalid role provided');
+                return res.status(400).json({ message: 'Invalid role' });
         }
 
-        const isMatch = await compare(password, user.password);
-        if (!isMatch) {
-            return res.status(401).json({ message: 'Invalid credentials' });
+        // Password verification for admin and instructor only
+        if (role === 'admin' || role === 'instructor') {
+            const isMatch = await bcrypt.compare(password, user.password);
+            if (!isMatch) {
+                console.log('Password mismatch');
+                return res.status(401).json({ message: 'Invalid credentials' });
+            }
         }
 
-        res.status(200).json({ message: 'Login successful' });
+        // Generate token
+        const token = jwt.sign({ userId: user._id, type: role }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        console.log('Token generated:', token);
+
+        res.status(200).json({ token });
     } catch (err) {
         console.error('Login error:', err);
         res.status(500).json({ message: 'Server error' });
