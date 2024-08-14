@@ -20,9 +20,6 @@ const Navbar2 = () => {
         <Link className="links" to="/loggedIn">
           COURSES
         </Link>
-        <Link className="links" to="/contactUs">
-          CONTACT US
-        </Link>
         <div>
           <button className="log-out">
             <Link style={{ textDecoration: "none", color: "#121212" }} to="/">
