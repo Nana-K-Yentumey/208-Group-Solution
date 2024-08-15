@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "./Navbar2.css";
 import { useState } from "react";
 
-const Navbar2 = () => {
+const NavbarStudent = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -14,11 +14,14 @@ const Navbar2 = () => {
         <span></span>
       </div>
       <ul className={menuOpen ? "open" : "nav-ul"}>
-        <Link className="links" to="/dashboard">
+        <Link className="links" to="/studentDashboard">
           DASHBOARD
         </Link>
         <Link className="links" to="/loggedIn">
           COURSES
+        </Link>
+        <Link className="links" to="/contactUs">
+          CONTACT US
         </Link>
         <div>
           <button className="log-out">
@@ -32,4 +35,4 @@ const Navbar2 = () => {
   );
 };
 
-export default Navbar2;
+export default NavbarStudent;
