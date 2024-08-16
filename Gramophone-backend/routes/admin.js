@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-=======
-/* eslint-disable no-undef */
-"use strict";
-
->>>>>>> 90150dae20814854578b08fabcb30040e844a2ed
 const express = require('express');
 const { authenticateToken, authenticateAdmin } = require('../middleware/auth');
 const AdminController = require('../controllers/adminController');
