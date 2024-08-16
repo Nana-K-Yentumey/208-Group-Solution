@@ -40,3 +40,10 @@ The secretary will be in charge of adding and removing students, instructors, et
 The Director will oversee all the operations.
 
 More requirements will be added in due course.
+
+
+
+//FOR Backend
+1)Create a 'change password' API
+2)Create a 'forgot password' API where they can use probably t
+

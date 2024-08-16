@@ -4,11 +4,13 @@ const Schema = mongoose.Schema;
 const courseSchema = new Schema({
     courseCode: { type: String, required: true, unique: true }, // e.g., 'Drum123'
     instrument: { type: String, required: true }, // e.g., 'Drum'
-    instructorID: { type: Schema.Types.ObjectId, ref: 'Instructor', required: true }, // Reference to Instructor
+    instructorID: { type: String, required: true },
+    instructorName: {type: String},
     day: { type: String, required: true }, // e.g., 'Monday'
     sessions: [{
         studentID: { type: String, required: true }, // studentID, not _id
-        time: { type: String, required: true } // e.g., '2pm'
+        studentName: {type: String},
+        time: { type: String, required: false } // e.g., '2pm'
     }]
 });
 

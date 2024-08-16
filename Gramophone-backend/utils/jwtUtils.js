@@ -5,7 +5,7 @@ const jwtSecret = process.env.JWT_SECRET;
 
 // Function to generate a JWT
 function generateToken(payload) {
-  return jwt.sign(payload, jwtSecret, { expiresIn: '1h' });
+  return jwt.sign(payload, jwtSecret, { expiresIn: '4h' });
 }
 
 // Function to verify a JWT
