@@ -25,8 +25,8 @@ const NavbarStudent = () => {
         </Link>
         <div>
           <button className="log-out">
-            <Link style={{ textDecoration: "none", color: "#121212" }} to="/">
-              LOG OUT
+            <Link className="links" to="/">
+              Log Out
             </Link>
           </button>
         </div>
