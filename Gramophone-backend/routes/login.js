@@ -55,9 +55,22 @@ router.post('/', async (req, res) => {
                 return res.status(401).json({ message: 'Invalid credentials' });
             }
         }
+        else if(role ==='student'){
+            const isMatch = await bcrypt.compare(password, user.password);
+            if (!isMatch) {
+                console.log('Password Mismatch for student');
+                return res.status(401).json({message: 'Invalid credentials for Student'})
+            }
+        }
 
         // Generate token
-        const token = jwt.sign({ userId: user._id, type: role }, process.env.JWT_SECRET, { expiresIn: '4h' });
+        const tokenPayload = {
+            userId: user._id,
+            sp_userId: role === 'student' ? user.studentID : role === 'instructor' ? user.instructorID : null, //To use the payload to get the student and instructor IDs
+            type: role
+        };
+
+        const token = jwt.sign(tokenPayload, process.env.JWT_SECRET, { expiresIn: '4h' });
         console.log('Token generated:', token);
 
         res.status(200).json({ token });

@@ -1,67 +1,28 @@
 const express = require('express');
 const router = express.Router();
-const Instructor = require('../models/Instructor');
+const InstructorController = require('../controllers/instructorController');
+const {authenticateInstructor }= require('../middleware/auth');
 
-// Get all instructors
-router.get('/', async (req, res) => {
-    try {
-        const instructors = await Instructor.find();
-        res.json(instructors);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
+// Apply authentication middleware to all instructor routes
+router.use(authenticateInstructor);
 
-// Get a specific instructor
-router.get('/:instructorID', getInstructor, (req, res) => {
-    res.json(res.instructor);
-});
+// Route to view courses the instructor is to teach
+router.get('/courses', InstructorController.viewCourses);
 
-// Create a new instructor
-router.post('/', async (req, res) => {
-    const instructor = new Instructor(req.body);
-    try {
-        const newInstructor = await instructor.save();
-        res.status(201).json(newInstructor);
-    } catch (err) {
-        res.status(400).json({ message: err.message });
-    }
-});
+// Route to view the number of students and the list of students in a course
+router.get('/courses/:courseCode/students', InstructorController.viewCourseStudents);
 
-// Update an instructor
-router.put('/:id', getInstructor, async (req, res) => {
-    Object.assign(res.instructor, req.body);
-    try {
-        const updatedInstructor = await res.instructor.save();
-        res.json(updatedInstructor);
-    } catch (err) {
-        res.status(400).json({ message: err.message });
-    }
-});
+// Route to view personal info
+router.get('/personal-info', InstructorController.viewPersonalInfo);
 
-// Delete an instructor
-router.delete('/:id', getInstructor, async (req, res) => {
-    try {
-        await res.instructor.remove();
-        res.json({ message: 'Instructor deleted' });
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
+// Route to update personal info
+router.put('/personal-info', InstructorController.updatePersonalInfo);
 
-// Middleware to get an instructor by ID
-async function getInstructor(req, res, next) {
-    let instructor;
-    try {
-        instructor = await Instructor.findById(req.params.id);
-        if (!instructor) {
-            return res.status(404).json({ message: 'Instructor not found' });
-        }
-    } catch (err) {
-        return res.status(500).json({ message: err.message });
-    }
-    res.instructor = instructor;
-    next();
-}
+// Route to post an announcement in a particular course
+router.post('/courses/:courseCode/announcement', InstructorController.postAnnouncement);
 
+// Route to post an announcement for a particular student
+router.post('/students/:studentID/announcement', InstructorController.postAnnouncementForStudent);
+
+router.put('/reset-password/:instructorID', InstructorController.resetPassword);
 module.exports = router;

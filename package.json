@@ -10,20 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-<<<<<<< HEAD
     "208-group-project": "file:",
-    "bcrypt": "^5.1.1",
-=======
     "axios": "^1.7.2",
->>>>>>> 90150dae20814854578b08fabcb30040e844a2ed
     "chart.js": "^4.4.3",
     "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.3.1",
-<<<<<<< HEAD
-=======
-    "react-hook-form": "^7.52.0",
->>>>>>> 90150dae20814854578b08fabcb30040e844a2ed
+    "react-hook-form": "^7.52.2",
     "react-router-dom": "^6.23.1"
   },
   "devDependencies": {

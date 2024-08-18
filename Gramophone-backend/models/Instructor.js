@@ -6,6 +6,7 @@ const instructorSchema = new mongoose.Schema({
     contact: String,
     email: String,
     instrument: [String],
+    password: String
     
 });
 

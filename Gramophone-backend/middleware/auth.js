@@ -43,6 +43,7 @@ const authenticateStudent = (req, res, next) => {
 // Middleware to check if the user is an instructor
 const authenticateInstructor = (req, res, next) => {
   authenticateToken(req, res, () => {
+    console.log('User Info:', req.user)
     if (req.user.type !== 'instructor') { // Check the type instead of role
       return res.status(403).json({ message: 'Access denied' });
     }
