@@ -1,3 +1,8 @@
+:root {
+  --gold-color: #c3a71d;
+  --gray-color: #747474;
+}
+
 .nav-bar2 {
   background-color: rgb(39, 38, 38);
   display: flex;
@@ -32,7 +37,7 @@ nav .menu span {
 
 .log-out {
   background-color: #fdfbfb;
-  color: #c3a71d;
+  color: var(--gold-color);
   height: 40px;
   width: 80px;
   border: none;
@@ -43,8 +48,10 @@ nav .menu span {
   text-decoration: none;
 }
 .links {
-  color: #c3a71d;
+  color: var(--gold-color);
   text-decoration: none;
+  text-transform: capitalize;
+  font-size: 1rem;
 }
 .links:active {
   opacity: 0.6;

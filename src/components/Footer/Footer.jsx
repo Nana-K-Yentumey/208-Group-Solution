@@ -3,42 +3,47 @@ import "./Footer.css";
 const Footer = () => {
   return (
     <footer className="footer-container">
-      <div className="footer-content">
+      <section className="gramophone">
+        <h3>Gramophone Academy of Music</h3>
         <div className="social-links">
-          <a
-            href="https://facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Facebook
+          <a href="">
+            <img src="src\assets\icons\facebook-2.png" alt="" />
           </a>
-          <a
-            href="https://twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Twitter
+          <a href="">
+            <img src="src\assets\icons\linkedin.png" alt="" />
           </a>
-          <a
-            href="https://instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Instagram
+          <a href="">
+            <img src="src\assets\icons\youtube.png" alt="" />
           </a>
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            LinkedIn
+          <a href="">
+            <img src="src\assets\icons\instagram.png" alt="" />
           </a>
         </div>
-        <p className="footer-text">
-          &copy; 2024 Gramophone Ghana. All rights reserved.
-        </p>
-        <p className="footer-text">Designed by Quetzal Tech</p>
-      </div>
+      </section>
+      <section className="topic">
+        <h4>Topic</h4>
+        <ul>
+          <li>Page</li>
+          <li>Page</li>
+          <li>Page</li>
+        </ul>
+      </section>
+      <section className="topic">
+        <h4>Topic</h4>
+        <ul>
+          <li>Page</li>
+          <li>Page</li>
+          <li>Page</li>
+        </ul>
+      </section>
+      <section className="topic">
+        <h4>Topic</h4>
+        <ul>
+          <li>Page</li>
+          <li>Page</li>
+          <li>Page</li>
+        </ul>
+      </section>
     </footer>
   );
 };
