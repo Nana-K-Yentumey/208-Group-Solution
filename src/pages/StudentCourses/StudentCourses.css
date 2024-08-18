@@ -1,0 +1,91 @@
+:root {
+  --gold-color: #c3a71d;
+  --gray-color: #747474;
+  --dark: #000;
+}
+
+body,
+.landing_page_container {
+  overflow-x: hidden;
+}
+
+.student_courses_main {
+  width: 100%;
+  padding: 80px 50px;
+  background-color: #fff;
+}
+.course {
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+}
+.course_header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 4rem;
+}
+.course_header h1 {
+  color: var(--dark);
+  font-size: 4.5rem;
+}
+.course_header p {
+  color: var(--gray-color);
+  font-size: 1.3rem;
+}
+.course {
+  width: 100%;
+  margin-bottom: 5rem;
+}
+.course-1 {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6.25rem;
+}
+.course-1 img {
+  flex: 1;
+  max-width: 100%;
+}
+.course-info {
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 1rem;
+  /* background-color: antiquewhite; */
+}
+
+.course-info h2 {
+  font-size: 4rem;
+  color: var(--dark);
+}
+.course-info p {
+  color: var(--gray-color);
+  font-size: 1.85rem;
+}
+.course-info h3 {
+  color: var(--gold-color);
+  font-size: 2.5rem;
+  font-weight: 500;
+}
+
+.contact_tutor {
+  flex: 2;
+}
+.contact_tutor h3,
+.announcements h3 {
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+.contact_tutor p {
+  color: var(--gray-color);
+  font-size: 1.7rem;
+}
+.announcements {
+  /* background-color: red; */
+  flex: 3;
+}
+.announcements p {
+  color: var(--gray-color);
+  font-size: 1.5rem;
+}
