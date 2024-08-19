@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import "./Footer.css";
 
 const Footer = () => {
@@ -20,7 +19,6 @@ const Footer = () => {
             <img src="src\assets\icons\instagram.png" alt="" />
           </a>
         </div>
-        <Link to="/adminDashboard">Dashboard</Link>
       </section>
       {/* <section className="topic">
         <h4>Topic</h4>
