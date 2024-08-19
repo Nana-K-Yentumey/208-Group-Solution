@@ -10,7 +10,8 @@ const studentSchema = new mongoose.Schema({
         instructorId: { type: mongoose.Schema.Types.ObjectId, ref: 'Instructor' },
         day: String,
         time: String
-    }]
+    }],
+    password: String
 });
 
 module.exports = mongoose.model('Student', studentSchema);
