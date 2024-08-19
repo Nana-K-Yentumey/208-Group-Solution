@@ -1,37 +1,61 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import "./StudentDashboard.css";
-import Timetable from "../../components/Timetable/Timetable";
+import Announcement from "../../components/Timetable/Announcement";
 import Footer from "../../components/Footer/Footer";
 import NavbarStudent from "../../components/Navbar2/NavbarStudent";
 
 const StudentDashboard = () => {
   const [studentName, setStudentName] = useState("");
+  const [courses, setCourses] = useState([]);
 
   useEffect(() => {
-    const fetchStudentName = async () => {
+    const fetchStudentData = async () => {
       try {
-        const token = localStorage.getItem("token"); // Assuming the JWT is stored in localStorage
-        const response = await fetch("http://localhost:4000/student-info", { // Replace with your actual API endpoint
+        const token = localStorage.getItem("token");
+        if (!token) {
+          console.error("No token found");
+          return;
+        }
+
+        // Fetch student name
+        const studentResponse = await fetch("http://localhost:4000/students/student-info", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`, // Pass the token in the header
+            "Authorization": `Bearer ${token}`,
           },
         });
 
-        if (response.ok) {
-          const data = await response.json();
-          setStudentName(data.name); // Assuming the response contains the student's name under "name"
-        } else {
-          console.error("Failed to fetch student info");
+        if (!studentResponse.ok) {
+          console.error("Student response error:", studentResponse.statusText);
+          return;
         }
+
+        const studentData = await studentResponse.json();
+        setStudentName(studentData.studentName);
+
+        // Fetch courses for the student
+        const coursesResponse = await fetch("http://localhost:4000/students/courses", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+          },
+        });
+
+        if (!coursesResponse.ok) {
+          console.error("Courses response error:", coursesResponse.statusText);
+          return;
+        }
+
+        const coursesData = await coursesResponse.json();
+        setCourses(coursesData.courses);
       } catch (err) {
-        console.error("Error fetching student info:", err);
+        console.error("Error fetching student data:", err);
       }
     };
 
-    fetchStudentName();
+    fetchStudentData();
   }, []);
 
   return (
@@ -41,40 +65,27 @@ const StudentDashboard = () => {
         <h2 className="welcome-msg">WELCOME BACK, {studentName}!</h2>
         <h2 className="sessions-text">Sessions</h2>
         <section className="wrapper-1">
-          <article className="sessions">
-            <h2>DRUM123</h2>
-            <div>
-              <p>Instructor</p>
-              <h3>Ampofo</h3>
-            </div>
-            <div>
-              <p>Day</p>
-              <h3>MONDAY</h3>
-            </div>
-            <div>
-              <p>Time</p>
-              <h3>4:00 pm</h3>
-            </div>
-          </article>
-          <article className="sessions">
-            <h2>DRUM323</h2>
-            <div>
-              <p>Instructor</p>
-              <h3>Ampofo</h3>
-            </div>
-            <div>
-              <p>Day</p>
-              <h3>WEDNESDAY</h3>
-            </div>
-            <div>
-              <p>Time</p>
-              <h3>2:00 pm</h3>
-            </div>
-          </article>
+          {courses.map((course, index) => (
+            <article key={index} className="sessions">
+              <h2>{course.courseCode}</h2>
+              <div>
+                <p>Instructor</p>
+                <h3>{course.instructorName}</h3>
+              </div>
+              <div>
+                <p>Day</p>
+                <h3>{course.day}</h3>
+              </div>
+              <div>
+                <p>Time</p>
+                <h3>{course.time}</h3>
+              </div>
+            </article>
+          ))}
         </section>
         <section className="wrapper-2">
           <h3>Instructor feedback & Announcements </h3>
-          <Timetable />
+          <Announcement />
         </section>
       </div>
       <Footer />

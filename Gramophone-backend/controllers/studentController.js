@@ -15,6 +15,51 @@ const StudentController = {
     }
   },
 
+  getAnnouncementsForStudent: async (req, res) => {
+    try {
+        const studentID = req.user.userId; // Extract student ID from the authenticated user's token
+
+        // Find all courses where the studentID is listed in the sessions
+        const courses = await Course.find({
+            "sessions.studentID": studentID
+        }).populate('announcements'); // Populate the announcements field
+
+        if (!courses.length) {
+            return res.status(404).json({ message: 'No courses found for this student' });
+        }
+
+        // Collect all course-related announcements
+        const courseAnnouncements = courses.reduce((acc, course) => {
+            course.announcements.forEach(announcement => {
+                acc.push({
+                    courseCode: course.courseCode,
+                    content: announcement.content,
+                    time: announcement.time
+                });
+            });
+            return acc;
+        }, []);
+
+        // Fetch general announcements from the admin
+        const adminAnnouncements = await Announcement.find({ type: 'admin' }).select('content time');
+
+        // Combine course-related announcements with admin announcements
+        const allAnnouncements = [
+            ...courseAnnouncements,
+            ...adminAnnouncements.map(announcement => ({
+                courseCode: "Admin", // Label admin announcements distinctly
+                content: announcement.content,
+                time: announcement.time
+            }))
+        ];
+
+        res.status(200).json({ announcements: allAnnouncements });
+    } catch (err) {
+        res.status(500).json({ message: 'Failed to retrieve announcements', error: err.message });
+    }
+},
+
+
   // View course-specific announcements
   viewCourseAnnouncements: async (req, res) => {
     const { courseCode } = req.params;
@@ -31,17 +76,6 @@ const StudentController = {
   },
 
   // View personal information
-  viewPersonalInfo: async (req, res) => {
-    try {
-      const student = await Student.findOne({ studentID: req.user.userId });
-      if (!student) {
-        return res.status(404).json({ message: 'Student not found' });
-      }
-      res.status(200).json(student);
-    } catch (err) {
-      res.status(500).json({ message: 'Failed to retrieve personal information', error: err.message });
-    }
-  },
 
   // Edit personal information
   editPersonalInfo: async (req, res) => {
@@ -103,33 +137,74 @@ const StudentController = {
       res.status(500).json({ message: 'Failed to retrieve session details', error: err.message });
     }
   },
-    studentInfo: async (req, res) => {
-      try {
-        // Assuming req.user.sp_userId contains the studentID after authentication
-        const studentID = req.user.sp_userId;
-        
-        // Find the student by their studentID
-        const student = await Student.findOne({ studentID });
-  
-        // If the student is not found, return a 404 error
-        if (!student) {
-          return res.status(404).json({ message: 'Student not found' });
-        }
-  
-        // Respond with the student's name and other necessary information
-        res.status(200).json({
-          message: 'Student info retrieved successfully',
-          studentID: student.studentID,
-          studentName: student.studentName,
-          // Add any other fields you want to return, like email, instrument, etc.
-          email: student.email,
-          instrument: student.instrument,
-          schedule: student.schedule,
-        });
-      } catch (err) {
-        res.status(500).json({ message: 'Failed to retrieve student info', error: err.message });
+  viewPersonalInfo: async (req, res) => {
+    try {
+      const student = await Student.findOne({ studentID: req.user.sp_userId });
+      if (!student) {
+        return res.status(404).json({ message: 'Student not found' });
       }
-    },
+      res.status(200).json(student);
+    } catch (err) {
+      res.status(500).json({ message: 'Failed to retrieve personal information', error: err.message });
+    }
+  },
+
+  // Endpoint to get student info for the dashboard
+  studentInfo: async (req, res) => {
+    try {
+      // Assuming req.user.sp_userId contains the studentID after authentication
+      const studentID = req.user.sp_userId;
+      
+      // Find the student by their studentID
+      const student = await Student.findOne({ studentID });
+
+      // If the student is not found, return a 404 error
+      if (!student) {
+        return res.status(404).json({ message: 'Student not found' });
+      }
+
+      // Respond with the student's name and other necessary information
+      res.status(200).json({
+        message: 'Student info retrieved successfully',
+        studentID: student.studentID,
+        studentName: student.studentName,
+        email: student.email,
+        instrument: student.instrument,
+        schedule: student.schedule,
+      });
+    } catch (err) {
+      res.status(500).json({ message: 'Failed to retrieve student info', error: err.message });
+    }
+  },
+  studentCourses: async (req, res) => {
+    try {
+      const studentID = req.user.sp_userId; // Assuming this is stored in req.user
+
+      // Find courses where this studentID is present in the sessions array
+      const courses = await Course.find({ 'sessions.studentID': studentID })
+        .populate('instructorID', 'name') // Populate instructor name
+        .exec();
+
+      if (!courses.length) {
+        return res.status(404).json({ message: 'No courses found for this student' });
+      }
+
+      // Map through the courses to structure the response
+      const courseData = courses.map(course => ({
+        courseCode: course.courseCode,
+        instructorName: course.instructorName, // Access the populated instructor name
+        day: course.day,
+        time: course.sessions.find(session => session.studentID === studentID).time // Get the time for this student
+      }));
+
+      res.status(200).json({
+        message: 'Courses retrieved successfully',
+        courses: courseData,
+      });
+    } catch (err) {
+      res.status(500).json({ message: 'Failed to retrieve courses', error: err.message });
+    }
+  },
   resetPassword: async (req, res) => {
     const { studentID } = req.params;
     const { newPassword } = req.body;

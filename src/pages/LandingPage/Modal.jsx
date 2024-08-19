@@ -33,6 +33,9 @@ const Modal = ({ show, handleClose }) => {
       const data = await response.json();
 
       if (response.ok) {
+        // Store the token in local storage
+        localStorage.setItem('token', data.token);
+
         // Display success message with user's role and name
         Swal.fire({
           icon: "success",
