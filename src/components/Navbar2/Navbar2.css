@@ -11,6 +11,9 @@
   align-items: center;
   padding: 20px 30px;
 }
+.admin_nav ul {
+  width: 60%;
+}
 
 nav .menu {
   display: none;

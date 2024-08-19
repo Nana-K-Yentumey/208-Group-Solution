@@ -10,6 +10,8 @@ import ContactUs from "././pages/ContactPage/ContactUs";
 import StudentDashboard from "./pages/StudentDashboard/StudentDashboard";
 import InstructorDashboard from "./pages/InstructorDashboard/InstructorDashboard";
 import InstructorCourses from "./pages/InstructorCourses/InstructorCourses";
+import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -24,7 +26,9 @@ function App() {
           <Route path="/studentDashboard" Component={StudentDashboard} />
           <Route path="/instructorDashboard" Component={InstructorDashboard} />
           <Route path="/instructorCourses" Component={InstructorCourses} />
+          <Route path="/adminDashboard" Component={AdminDashboard} />
         </Routes>
+        <Footer />
       </Router>
     </div>
   );

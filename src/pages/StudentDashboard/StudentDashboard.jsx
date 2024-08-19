@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import "./StudentDashboard.css";
 import Announcement from "../../components/Timetable/Announcement";
-import Footer from "../../components/Footer/Footer";
 import NavbarStudent from "../../components/Navbar2/NavbarStudent";
 
 const StudentDashboard = () => {
@@ -94,7 +93,6 @@ const StudentDashboard = () => {
           <Announcement />
         </section>
       </div>
-      <Footer />
     </main>
   );
 };

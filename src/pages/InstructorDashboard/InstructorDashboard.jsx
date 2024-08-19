@@ -1,4 +1,3 @@
-import Footer from "../../components/Footer/Footer";
 import "./InstructorDashboard.css";
 import NavbarInstructor from "../../components/Navbar2/NavbarInstructor";
 import InstructorTimetable from "../../components/Timetable/InstuctorTimetable";
@@ -37,7 +36,6 @@ const InstructorDashboard = () => {
           <InstructorTimetable />
         </section>
       </section>
-      <Footer />
     </main>
   );
 };
