@@ -193,6 +193,7 @@ const StudentController = {
       const courseData = courses.map(course => ({
         courseCode: course.courseCode,
         instructorName: course.instructorName, // Access the populated instructor name
+        instructorEmail: course.instructorID.email,
         day: course.day,
         time: course.sessions.find(session => session.studentID === studentID).time // Get the time for this student
       }));

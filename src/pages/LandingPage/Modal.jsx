@@ -41,7 +41,7 @@ const Modal = ({ show, handleClose }) => {
         Swal.fire({
           icon: "success",
           title: "Login Successful",
-          text: `Welcome ${data.type}: ${data.sp_userId}`,
+          text: `Welcome ${data.sp_userId}`,
         });
 
         setError("");

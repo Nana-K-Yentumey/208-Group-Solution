@@ -78,14 +78,14 @@ function LandingPage() {
         <Modal show={showModal} handleClose={handleCloseModal} />
       </div>
 
-      <div className="section-2">
+      {/* <div className="section-2">
         <h1>Client Reviews</h1>
         <div className="cards">
           {clients.map((client) => (
             <ReviewCard client={client} key={client.key} />
           ))}
         </div>
-      </div>
+      </div> */}
 
       <Footer />
     </div>

@@ -1,24 +1,32 @@
-const Courses = [
-  {
-    id:1,
-    name: "DRUM123",
-    instructorName: "Ampofo",
-    instructorEmail: "Ampofo@example.com",
-    instructorPhone: "02434567890",
-    dayOfSession: "Monday",
-    timeOfSession: "4:00pm",
-    imageURL: "src/assets/Images/drums.png",
-  },
-  {
-    id:2,
-    name: "DRUM123",
-    instructorName: "Ampofo",
-    instructorEmail: "Ampofo@example.com",
-    instructorPhone: "02434567890",
-    dayOfSession: "Wednesday",
-    timeOfSession: "2:00pm",
-    imageURL: "src/assets/Images/drums.png",
-  },
-];
+// fetchCourses.js
+export const Courses = async () => {
+  try {
+    const token = localStorage.getItem("token"); // Assuming the JWT is stored in localStorage
 
-export default Courses;
+    const response = await fetch("http://localhost:4000/students/courses", { // Replace with your actual API endpoint
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`, // Pass the token in the header
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch courses");
+    }
+
+    const data = await response.json();
+    return data.courses.map((course) => ({
+      id: course._id,
+      name: course.courseCode,
+      instructorName: course.instructorDetails.name,
+      instructorEmail: course.instructorDetails.email,
+      instructorPhone: course.instructorDetails.contact,
+      dayOfSession: course.day,
+      timeOfSession: course.time,
+    }));
+  } catch (err) {
+    console.error("Error fetching courses:", err);
+    return [];
+  }
+};

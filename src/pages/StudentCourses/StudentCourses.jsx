@@ -1,12 +1,40 @@
-/* eslint-disable react/no-unescaped-entities */
-
+import React, { useState, useEffect } from "react";
 import Footer from "../../components/Footer/Footer";
 import NavbarStudent from "../../components/Navbar2/NavbarStudent";
 import CourseCard from "../../components/CourseCard/CourseCard";
 import "./StudentCourses.css";
-import Courses from "./Courses";
 
 function StudentCourses() {
+  const [courses, setCourses] = useState([]);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const token = localStorage.getItem("token"); // Get the JWT token from localStorage
+        const response = await fetch("http://localhost:4000/students/courses", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`, // Pass the token in the header
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setCourses(data.courses); // Set the fetched courses into state
+        } else {
+          setError("Failed to fetch courses");
+        }
+      } catch (err) {
+        console.error("Error fetching courses:", err);
+        setError("An error occurred while fetching courses");
+      }
+    };
+
+    fetchCourses();
+  }, []);
+
   return (
     <div className="landing_page_container">
       <NavbarStudent />
@@ -16,10 +44,14 @@ function StudentCourses() {
           <p>The courses you have signed up for so far!</p>
         </header>
 
-        {/* sections here  */}
-        {Courses.map((course) => (
-          <CourseCard course={course} key={course.id} />
-        ))}
+        {/* Display courses or error message */}
+        {error ? (
+          <p>{error}</p>
+        ) : (
+          courses.map((course) => (
+            <CourseCard course={course} key={course.courseCode} />
+          ))
+        )}
       </main>
       <Footer />
     </div>
