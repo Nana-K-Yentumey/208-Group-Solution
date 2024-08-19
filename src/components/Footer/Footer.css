@@ -44,3 +44,9 @@
   margin-bottom: 1rem;
   color: var(--gray-color);
 }
+
+@media (max-width: 400px) {
+  .topic {
+    display: none;
+  }
+}

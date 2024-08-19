@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./Footer.css";
 
 const Footer = () => {
@@ -18,6 +19,7 @@ const Footer = () => {
           <a href="">
             <img src="src\assets\icons\instagram.png" alt="" />
           </a>
+          <Link to="/instructorDashboard">Dashboard</Link>
         </div>
       </section>
       <section className="topic">

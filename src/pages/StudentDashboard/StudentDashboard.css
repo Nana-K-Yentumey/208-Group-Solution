@@ -17,7 +17,7 @@
 .container-1 {
   width: 100%;
   height: auto;
-  padding: 4.5rem;
+  padding: 5rem;
   margin-bottom: 50px;
 }
 .container-1 h2 {
@@ -125,5 +125,11 @@
 @media (max-width: 790px) {
   .wrapper-1 {
     flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 450px) {
+  .container-1 {
+    padding: 1rem;
   }
 }

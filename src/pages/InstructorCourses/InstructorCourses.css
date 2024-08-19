@@ -1,0 +1,23 @@
+:root {
+  --gold-color: #c3a71d;
+  --gray-color: #747474;
+  --light-color: #fff;
+}
+
+.instructor_courses_main {
+  width: 100%;
+  background-color: var(--light-color);
+}
+
+.courses_section {
+  width: 100%;
+  height: 100vh;
+  background-color: beige;
+  padding: 5rem;
+}
+
+@media (max-width: 450px) {
+  .courses_section {
+    padding: 1rem;
+  }
+}

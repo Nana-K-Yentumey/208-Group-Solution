@@ -14,14 +14,17 @@ const NavbarInstructor = () => {
         <span></span>
       </div>
       <ul className={menuOpen ? "open" : "nav-ul"}>
-        <Link className="links" to="/studentDashboard">
-          DASHBOARD
+        <Link className="links" to="/instructorDashboard">
+          Dashboard
         </Link>
-        <Link className="links" to="/loggedIn">
-          COURSES
+        <Link className="links" to="/instructorCourses">
+          Courses
         </Link>
-        <Link className="links" to="/contactUs">
-          CONTACT US
+        <Link className="links" to="/">
+          Annoucements
+        </Link>
+        <Link className="links" to="/">
+          Profile
         </Link>
         <div>
           <button className="log-out">

@@ -66,6 +66,7 @@
 }
 .button_wrapper button {
   padding: 0.3rem;
+  width: 6.25rem;
   outline: none;
   border: none;
   background-color: #3a3a3a;
@@ -83,4 +84,10 @@
 .dashboard_section .wrapper-2 h3 {
   text-transform: uppercase;
   font-size: 1.2rem;
+}
+
+@media (max-width: 450px) {
+  .dashboard_section {
+    padding: 1rem;
+  }
 }
