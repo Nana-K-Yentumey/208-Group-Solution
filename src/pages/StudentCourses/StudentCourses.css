@@ -6,7 +6,7 @@
 
 body,
 .landing_page_container {
-  overflow-x: hidden;
+  overflow-x:initial;
 }
 
 .student_courses_main {
@@ -41,9 +41,10 @@ body,
   box-shadow: inset;
   max-width: 100%;
   height: auto;
-  width: auto; /* Maintain aspect ratio */
-  max-height: 250px; /* Set a max height to prevent excessive size */
-  object-fit: cover; /* Ensure the image covers the container without distortion */
+  /* width: auto; */
+  max-height: 300px; 
+  object-fit: cover; 
+  flex-shrink: inherit;
 }
 
 .course {
@@ -53,13 +54,10 @@ body,
 .course-1 {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   gap: 6.25rem;
 }
-.course-1 img {
-  flex: 1;
-  max-width: 100%;
-}
+
 .course-info {
   min-height: 400px;
   display: flex;
