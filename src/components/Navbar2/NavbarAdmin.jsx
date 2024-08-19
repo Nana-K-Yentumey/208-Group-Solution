@@ -14,7 +14,7 @@ const NavbarAdmin = () => {
         <span></span>
       </div>
       <ul className={menuOpen ? "open" : "nav-ul"}>
-        <Link className="links" to="/instructorDashboard">
+        <Link className="links" to="/adminDashboard">
           Dashboard
         </Link>
         <Link className="links" to="/instructorCourses">
@@ -26,7 +26,7 @@ const NavbarAdmin = () => {
         <Link className="links" to="/">
           Instructors
         </Link>
-        <Link className="links" to="/">
+        <Link className="links" to="/adminPage">
           Admin Page
         </Link>
         <div>

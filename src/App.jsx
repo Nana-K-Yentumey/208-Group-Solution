@@ -12,6 +12,7 @@ import InstructorDashboard from "./pages/InstructorDashboard/InstructorDashboard
 import InstructorCourses from "./pages/InstructorCourses/InstructorCourses";
 import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
 import Footer from "./components/Footer/Footer";
+import AdminStudentTab from "./pages/AdminStudentTab/AdminStudentTab";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/instructorDashboard" Component={InstructorDashboard} />
           <Route path="/instructorCourses" Component={InstructorCourses} />
           <Route path="/adminDashboard" Component={AdminDashboard} />
+          <Route path="/adminPage" Component={AdminStudentTab} />
         </Routes>
         <Footer />
       </Router>
