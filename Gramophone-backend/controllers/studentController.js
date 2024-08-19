@@ -2,6 +2,7 @@ const Student = require('../models/Student');
 const Announcement = require('../models/Announcement');
 const Course = require('../models/Course');
 const Instructor = require('../models/Instructor');
+const bcrypt = require('bcrypt');
 
 const StudentController = {
   // View all general announcements
@@ -101,7 +102,59 @@ const StudentController = {
     } catch (err) {
       res.status(500).json({ message: 'Failed to retrieve session details', error: err.message });
     }
+  },
+    studentInfo: async (req, res) => {
+      try {
+        // Assuming req.user.sp_userId contains the studentID after authentication
+        const studentID = req.user.sp_userId;
+        
+        // Find the student by their studentID
+        const student = await Student.findOne({ studentID });
+  
+        // If the student is not found, return a 404 error
+        if (!student) {
+          return res.status(404).json({ message: 'Student not found' });
+        }
+  
+        // Respond with the student's name and other necessary information
+        res.status(200).json({
+          message: 'Student info retrieved successfully',
+          studentID: student.studentID,
+          studentName: student.studentName,
+          // Add any other fields you want to return, like email, instrument, etc.
+          email: student.email,
+          instrument: student.instrument,
+          schedule: student.schedule,
+        });
+      } catch (err) {
+        res.status(500).json({ message: 'Failed to retrieve student info', error: err.message });
+      }
+    },
+  resetPassword: async (req, res) => {
+    const { studentID } = req.params;
+    const { newPassword } = req.body;
+
+    try {
+      // Find the instructor by ID
+      const student = await Student.findOne({ studentID });
+      if (!student) {
+        return res.status(404).json({ message: 'Student not found' });
+      }
+
+      // Hash the new password
+      const saltRounds = 10;
+      const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
+
+      // Update the instructor's password
+      student.password = hashedPassword;
+      await student.save();
+
+      res.status(200).json({ message: 'Password reset successfully' });
+    } catch (err) {
+      res.status(500).json({ message: 'Failed to reset password', error: err.message });
+    }
   }
+
 };
 
 module.exports = StudentController;
