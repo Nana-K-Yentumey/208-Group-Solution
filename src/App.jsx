@@ -9,6 +9,7 @@ import LoginPage from "./pages/LandingPage/Modal";
 import ContactUs from "././pages/ContactPage/ContactUs";
 import StudentDashboard from "./pages/StudentDashboard/StudentDashboard";
 import InstructorDashboard from "./pages/InstructorDashboard/InstructorDashboard";
+import InstructorCourses from "./pages/InstructorCourses/InstructorCourses";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/contactUs" Component={ContactUs} />
           <Route path="/studentDashboard" Component={StudentDashboard} />
           <Route path="/instructorDashboard" Component={InstructorDashboard} />
+          <Route path="/instructorCourses" Component={InstructorCourses} />
         </Routes>
       </Router>
     </div>

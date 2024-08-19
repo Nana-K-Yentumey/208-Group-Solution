@@ -59,10 +59,10 @@ nav .menu span {
 }
 
 .nav-ul {
-  width: 400px;
+  width: 40%;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   color: #fdfbfb;
 }
@@ -72,7 +72,7 @@ nav .menu span {
   cursor: pointer;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 985px) {
   nav .menu {
     display: flex;
   }
