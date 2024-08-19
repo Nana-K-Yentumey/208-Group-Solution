@@ -17,7 +17,7 @@ const InstructorController = {
       }
   
       const courses = await Course.find({ instructorID });
-      console.log('Courses found:', courses);  // Debug statement
+      // console.log('Courses found:', courses);  // Debug statement
   
       if (!courses.length) {
         return res.status(404).json({ message: 'No courses found for this instructor' });
@@ -77,6 +77,7 @@ const InstructorController = {
       res.status(200).json({
         message: 'Personal information retrieved successfully',
         instructor: {
+          instructorID: instructor.instructorID,
           name: instructor.name,
           email: instructor.email,
           contact: instructor.contact
@@ -194,7 +195,47 @@ const InstructorController = {
     } catch (err) {
       res.status(500).json({ message: 'Failed to reset password', error: err.message });
     }
-  }
+  },
+ 
+    getInstructorInfo: async (req, res) => {
+      try {
+        const instructorID = req.user.sp_userId;
+        const instructor = await Instructor.findById(instructorID).select('name');
+        if (!instructor) {
+          return res.status(404).json({ message: 'Instructor not found' });
+        }
+        res.status(200).json({ instructorName: instructor.name });
+      } catch (err) {
+        res.status(500).json({ message: 'Failed to retrieve instructor info', error: err.message });
+      }
+    },
+
+
+
+    getInstructorName: async (req, res) => {
+      try {
+        const instructorID = req.user.sp_userId; // Assuming this is stored in req.user
+        
+        if (!instructorID) {
+          return res.status(400).json({ message: 'Instructor ID is missing from the request' });
+        }
+  
+        // Assuming instructorID is not an ObjectId but a custom field like 'employeeId'
+        const instructor = await Instructor.findOne({ instructorId: instructorID }).select('name');
+  
+        if (!instructor) {
+          return res.status(404).json({ message: 'Instructor not found' });
+        }
+  
+        res.status(200).json({ instructorName: instructor.name });
+      } catch (err) {
+        console.error("Error in getInstructorName:", err); // This will log the error in your server console
+        res.status(500).json({ message: 'Failed to retrieve instructor name', error: err.message });
+      }
+    },
+  
+
+
 };
 
 module.exports = InstructorController;

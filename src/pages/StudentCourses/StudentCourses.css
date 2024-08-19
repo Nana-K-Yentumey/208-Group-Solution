@@ -6,7 +6,7 @@
 
 body,
 .landing_page_container {
-  overflow-x:initial;
+  overflow-x:hidden;
 }
 
 .student_courses_main {
@@ -43,7 +43,7 @@ body,
   height: auto;
   /* width: auto; */
   max-height: 300px; 
-  object-fit: cover; 
+  object-fit:contain; 
   flex-shrink: inherit;
 }
 
@@ -83,7 +83,7 @@ body,
 
 .contact_tutor {
   flex: 2;
-  padding-top: 10rem;
+  padding-top: 4rem;
 }
 .contact_tutor h3,
 .announcements h3 {
@@ -107,4 +107,8 @@ body,
   .student_courses_main {
     padding: 1rem;
   }
+}
+
+.course-image{
+  border-radius: 70px;
 }

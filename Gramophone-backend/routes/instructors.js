@@ -13,16 +13,19 @@ router.get('/courses', InstructorController.viewCourses);
 router.get('/courses/:courseCode/students', InstructorController.viewCourseStudents);
 
 // Route to view personal info
-router.get('/personal-info', InstructorController.viewPersonalInfo);
+// router.get('/personal-info', InstructorController.viewPersonalInfo);
 
 // Route to update personal info
 router.put('/personal-info', InstructorController.updatePersonalInfo);
+
+router.get('/instructor-info', InstructorController.getInstructorInfo);
 
 // Route to post an announcement in a particular course
 router.post('/courses/:courseCode/announcement', InstructorController.postAnnouncement);
 
 // Route to post an announcement for a particular student
 router.post('/students/:studentID/announcement', InstructorController.postAnnouncementForStudent);
+router.get('/name-info', InstructorController.getInstructorName);
 
 router.put('/reset-password/:instructorID', InstructorController.resetPassword);
 module.exports = router;
