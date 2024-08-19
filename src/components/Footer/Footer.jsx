@@ -20,7 +20,7 @@ const Footer = () => {
           </a>
         </div>
       </section>
-      <section className="topic">
+      {/* <section className="topic">
         <h4>Topic</h4>
         <ul>
           <li>Page</li>
@@ -43,7 +43,7 @@ const Footer = () => {
           <li>Page</li>
           <li>Page</li>
         </ul>
-      </section>
+      </section> */}
     </footer>
   );
 };

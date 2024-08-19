@@ -100,13 +100,13 @@
 }
 
 /* Timetable styles */
-.timetable {
+.announcement {
   margin-top: 5px;
   margin-bottom: 10px;
   width: 100%;
   table-layout: auto;
 }
-.timetable tbody {
+.announcement tbody {
   margin-bottom: 100px;
 }
 .main-column,
@@ -127,13 +127,13 @@
   width: 20%;
   color: var(--gold-color);
 }
-.timetable tr {
+.announcement tr {
   border-bottom: 1.5px solid rgb(216, 216, 216);
 }
-.timetable .trombone {
+.announcement .trombone {
   border: none;
 }
-.timetable td {
+.announcement td {
   height: 40px;
 }
 .table-heading {
