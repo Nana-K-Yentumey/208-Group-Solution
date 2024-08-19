@@ -8,6 +8,7 @@ import Dashboard from "././pages/DashboardPage/Dashboard";
 import LoginPage from "./pages/LandingPage/Modal";
 import ContactUs from "././pages/ContactPage/ContactUs";
 import StudentDashboard from "./pages/StudentDashboard/StudentDashboard";
+import InstructorDashboard from "./pages/InstructorDashboard/InstructorDashboard";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/login" Component={LoginPage} />
           <Route path="/contactUs" Component={ContactUs} />
           <Route path="/studentDashboard" Component={StudentDashboard} />
+          <Route path="/instructorDashboard" Component={InstructorDashboard} />
         </Routes>
       </Router>
     </div>
