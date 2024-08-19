@@ -78,6 +78,26 @@
   text-transform: uppercase;
   font-size: 1.2rem;
 }
+/* Instructor Timetable */
+.id-column,
+.name-column,
+.time-column {
+  text-transform: uppercase;
+}
+
+.id-column {
+  font-weight: 600;
+  width: 20%;
+}
+.name-column {
+  width: 20%;
+  text-align: left;
+}
+.time-column {
+  width: 60%;
+  color: var(--gold-color);
+  text-align: right;
+}
 
 /* Timetable styles */
 .timetable {
