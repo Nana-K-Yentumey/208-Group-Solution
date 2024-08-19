@@ -1,7 +1,7 @@
 import Footer from "../../components/Footer/Footer";
 import "./InstructorDashboard.css";
 import NavbarInstructor from "../../components/Navbar2/NavbarInstructor";
-import Timetable from "../../components/Timetable/Timetable";
+import InstructorTimetable from "../../components/Timetable/InstuctorTimetable";
 
 const InstructorDashboard = () => {
   return (
@@ -34,7 +34,7 @@ const InstructorDashboard = () => {
         </div>
         <section className="wrapper-2">
           <h3>Instructor feedback & Announcements </h3>
-          <Timetable />
+          <InstructorTimetable />
         </section>
       </section>
       <Footer />
