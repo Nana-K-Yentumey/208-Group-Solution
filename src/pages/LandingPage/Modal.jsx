@@ -1,7 +1,7 @@
-/* eslint-disable react/prop-types */
 import { useState } from "react";
-import "./LandingPage.css";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import "./LandingPage.css";
 
 const Modal = ({ show, handleClose }) => {
   const [username, setUsername] = useState("");
@@ -18,22 +18,44 @@ const Modal = ({ show, handleClose }) => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Add your login logic here
-    // Example: authenticate the user using an API call
+    try {
+      const response = await fetch("http://localhost:4000/login", {  // Update with your actual backend URL
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      });
 
-    if (username === "admin" && password === "password") {
-      setError("");
-      console.log("Login successful");
-      navigate("/dashboard");
-    } else if (username === "student" && password === "student123") {
-      setError("");
-      console.log("Login successful");
-      navigate("/studentDashboard");
-    } else {
-      setError("Invalid username or password");
+      const data = await response.json();
+
+      if (response.ok) {
+        // Display success message with user's role and name
+        Swal.fire({
+          icon: "success",
+          title: "Login Successful",
+          text: `Welcome ${data.type}: ${data.sp_userId}`,
+        });
+
+        setError("");
+
+        // Navigate based on user role
+        if (data.type === "admin") {
+          navigate("/dashboard");
+        } else if (data.type === "student") {
+          navigate("/studentDashboard");
+        } else if (data.type === "instructor") {
+          navigate("/instructorDashboard");
+        }
+      } else {
+        setError(data.message || "Invalid username or password");
+      }
+    } catch (err) {
+      console.error("Login error:", err);
+      setError("An error occurred during login. Please try again.");
     }
   };
 
