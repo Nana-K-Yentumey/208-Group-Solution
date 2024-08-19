@@ -15,8 +15,8 @@ const Courses = [
     instructorName: "Ampofo",
     instructorEmail: "Ampofo@example.com",
     instructorPhone: "02434567890",
-    dayOfSession: "Monday",
-    timeOfSession: "4:00pm",
+    dayOfSession: "Wednesday",
+    timeOfSession: "2:00pm",
     imageURL: "src/assets/Images/drums.png",
   },
 ];
