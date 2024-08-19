@@ -22,6 +22,16 @@ const AdminDashboard = () => {
               <h3>10</h3>
             </div>
           </div>
+          {/*  */}
+          <div className="admin_control">
+            <div>STUDENTS</div>
+            <div>INSTRUCTORS</div>
+            <div>COURSES</div>
+          </div>
+        </article>
+        <article className="annoucements_section">
+            <h2>ANNOUCEMENTS</h2>
+            <p>Admin adds general annoucements here!!!</p>
         </article>
       </section>
     </main>
