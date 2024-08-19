@@ -6,7 +6,7 @@ const InstructorDashboard = () => {
   return (
     <main className="dashboard_main">
       <NavbarInstructor />
-      <section className="dashboard_main_section">
+      <section className="dashboard_section">
         <h1>WELCOME BACK, Ampofo!</h1>
       </section>
       <Footer />
