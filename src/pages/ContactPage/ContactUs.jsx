@@ -1,7 +1,5 @@
 // import { useState } from "react";
 import "./contact.css";
-// import Navbar2 from "../../components/Navbar2/Navbar2";
-import Footer from "../../components/Footer/Footer";
 import { useForm } from "react-hook-form";
 import NavbarStudent from "../../components/Navbar2/NavbarStudent";
 
@@ -106,8 +104,6 @@ const ContactUs = () => {
           <button type="submit">Submit</button>
         </form>
       </div>
-
-      <Footer />
     </div>
   );
 };

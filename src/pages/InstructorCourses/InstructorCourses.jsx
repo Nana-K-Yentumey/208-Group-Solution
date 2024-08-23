@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from 'react';
-import Footer from "../../components/Footer/Footer";
 import NavbarInstructor from "../../components/Navbar2/NavbarInstructor";
 import InstructorCourseCard from "../../components/CourseCard/InstructorCourseCard";
 import "./InstructorCourses.css";
@@ -75,7 +73,6 @@ const InstructorCourses = () => {
           <p>All specific announcements for this course go here!!</p>
         </div>
       </section>
-      <Footer />
     </div>
   );
 };

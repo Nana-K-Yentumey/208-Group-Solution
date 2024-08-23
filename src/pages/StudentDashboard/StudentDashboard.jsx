@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./StudentDashboard.css";
 import Announcement from "../../components/Timetable/Announcement";
-import Footer from "../../components/Footer/Footer";
 import NavbarStudent from "../../components/Navbar2/NavbarStudent";
 
 const StudentDashboard = () => {
@@ -18,13 +17,16 @@ const StudentDashboard = () => {
         }
 
         // Fetch student name
-        const studentResponse = await fetch("http://localhost:4000/students/student-info", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`,
-          },
-        });
+        const studentResponse = await fetch(
+          "http://localhost:4000/students/student-info",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         if (!studentResponse.ok) {
           console.error("Student response error:", studentResponse.statusText);
@@ -35,13 +37,16 @@ const StudentDashboard = () => {
         setStudentName(studentData.studentName);
 
         // Fetch courses for the student
-        const coursesResponse = await fetch("http://localhost:4000/students/courses", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`,
-          },
-        });
+        const coursesResponse = await fetch(
+          "http://localhost:4000/students/courses",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         if (!coursesResponse.ok) {
           console.error("Courses response error:", coursesResponse.statusText);
@@ -88,7 +93,6 @@ const StudentDashboard = () => {
           <Announcement />
         </section>
       </div>
-      <Footer />
     </main>
   );
 };

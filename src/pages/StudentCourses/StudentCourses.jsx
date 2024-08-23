@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import Footer from "../../components/Footer/Footer";
+import  { useState, useEffect } from "react";
 import NavbarStudent from "../../components/Navbar2/NavbarStudent";
 import CourseCard from "../../components/CourseCard/CourseCard";
 import "./StudentCourses.css";
@@ -53,7 +52,6 @@ function StudentCourses() {
           ))
         )}
       </main>
-      <Footer />
     </div>
   );
 }
